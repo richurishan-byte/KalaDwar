@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KalaDwar – From Craft to Click</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f6e9cf;--card:#fbf3e1;--ink:#3a1f12;--mut:#7a5a45;--red:#8b2c1d;--gold:#e0b43a;--line:#dcc79c;--btn:#fff6e4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241410;--card:#33201a;--ink:#f6e9cf;--mut:#c9a98a;--red:#d9604a;--line:#5a3a2c;--btn:#241410}}
+:root[data-theme="dark"]{--bg:#241410;--card:#33201a;--ink:#f6e9cf;--mut:#c9a98a;--red:#d9604a;--line:#5a3a2c;--btn:#241410}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif}
+.w{max-width:760px;margin:0 auto;padding:16px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;margin:.2em 0}
+header{display:flex;justify-content:space-between;align-items:center;padding:8px 0 14px;border-bottom:1px solid var(--line)}
+.logo{font:700 24px 'Playfair Display',Georgia,serif;color:var(--red);text-decoration:none}.logo b{color:var(--gold)}
+.btn{display:inline-block;background:var(--red);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:600 14px Inter,sans-serif;cursor:pointer;text-decoration:none}
+.btn.o{background:var(--btn);color:var(--ink);border:1px solid var(--line)}
+.hero{padding:22px 0 8px}.hero p{color:var(--mut);margin:.3em 0 0}
+.tag{display:inline-block;background:var(--gold);color:#3a1f12;border-radius:6px;padding:2px 8px;font:600 12px Inter,sans-serif}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:14px 0}
+.c{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.c svg{display:block;width:100%;height:auto}.c .p{padding:10px 12px}
+.c a{color:inherit;text-decoration:none}.m{color:var(--mut);font-size:13px}
+.art{cursor:pointer}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+label{display:block;font:600 13px Inter,sans-serif;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+textarea{min-height:90px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:14px 0}
+.ac{max-width:340px;margin:10px auto;background:#fbf3e1;color:#3a1f12;border:3px double #8b2c1d;border-radius:12px;padding:12px;text-align:center}
+.ac svg{width:100%;height:auto;border-radius:8px}.ac h3{color:#8b2c1d}.ac .m{color:#7a5a45}
+.ac small{display:block;margin-top:8px;font-weight:600;letter-spacing:.08em;color:#8b2c1d}
+#qr{display:inline-block;background:#fff;padding:8px;border-radius:8px}
+.ok{background:#2f6b3a;color:#fff;border-radius:10px;padding:10px;margin:10px 0}
+.seg button{flex:1}.seg .on{background:var(--red);color:#fff}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:20px 0}
+</style></head><body><div class="w">
+<header><a class="logo" href="#">Kala<b>Dwar</b></a><a class="btn o" href="#create">+ Create portfolio</a></header>
+<main id="app"></main>
+<footer>KalaDwar · ART//CODE 2026 · PS-02 From Craft to Click<br>Sample profiles and artworks are illustrative.</footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const M={madhubani:(p,s)=>`<rect width="200" height="200" fill="${p[0]}"/><rect x="10" y="10" width="180" height="180" fill="none" stroke="${p[1]}" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round"/><g transform="rotate(${s*12} 100 100)"><ellipse cx="100" cy="100" rx="62" ry="34" fill="${p[2]}" stroke="${p[1]}" stroke-width="3"/><path d="M38 100 20 78M38 100 20 122" stroke="${p[1]}" stroke-width="4" fill="none"/><circle cx="145" cy="95" r="7" fill="${p[0]}" stroke="${p[1]}" stroke-width="2"/><circle cx="145" cy="95" r="3" fill="${p[1]}"/>${[70,90,110].map(x=>`<path d="M${x} 80q8 20 0 40" stroke="${p[1]}" fill="none" stroke-width="2"/>`).join('')}</g>`,
+warli:(p,s)=>`<rect width="200" height="200" fill="${p[0]}"/><circle cx="100" cy="100" r="${60+s*6}" fill="none" stroke="${p[1]}" stroke-width="3"/>`+[...Array(8)].map((_,i)=>{const a=i*Math.PI/4,x=100+Math.cos(a)*(60+s*6),y=100+Math.sin(a)*(60+s*6);return `<g transform="translate(${x} ${y}) rotate(${i*45+90})"><circle cy="-14" r="4" fill="${p[1]}"/><path d="M-8 12 0-8 8 12ZM-8-8 0 0 8-8Z" fill="${p[1]}"/></g>`}).join('')+`<path d="M92 100h16M100 92v16" stroke="${p[2]}" stroke-width="4"/>`,
+mural:(p,s)=>`<rect width="200" height="200" fill="${p[0]}"/><path d="M40 190V90a60 60 0 0 1 120 0v100Z" fill="${p[2]}" stroke="${p[1]}" stroke-width="4"/><circle cx="100" cy="95" r="${34+s*3}" fill="#e8b27a" stroke="${p[1]}" stroke-width="3"/><path d="M78 88q10-8 20 0M104 88q10-8 20 0" stroke="${p[1]}" stroke-width="3" fill="none"/><circle cx="100" cy="108" r="3" fill="${p[1]}"/><path d="M70 55q30-40 60 0" fill="${p[1]}"/>`,
+patta:(p,s)=>`<rect width="200" height="200" fill="${p[0]}"/>`+[90,70,50,30].map((r,i)=>`<circle cx="100" cy="100" r="${r}" fill="${i%2?p[2]:p[1]}" stroke="${p[0]}" stroke-width="2"/>`).join('')+[...Array(12)].map((_,i)=>`<ellipse cx="100" cy="${100-100+10}" rx="6" ry="12" fill="${p[2]}" transform="rotate(${i*30+s*10} 100 100)"/>`).join(''),
+gond:(p,s)=>`<rect width="200" height="200" fill="${p[0]}"/><ellipse cx="100" cy="105" rx="${58+s*4}" ry="40" fill="${p[2]}"/>`+[...Array(6)].map((_,i)=>`<path d="M${50+s*3} ${75+i*10}q25-10 50 0t50 0" stroke="${p[1]}" stroke-width="2.5" stroke-dasharray="1 6" stroke-linecap="round" fill="none"/>`).join('')+`<circle cx="150" cy="82" r="6" fill="${p[0]}"/><path d="M155 84l22 6-22 4" fill="${p[1]}"/>`};
+const A=[
+{id:'sita-devi',n:'Sita Devi Jha',k:'madhubani',f:'Madhubani',pl:'Madhubani, Bihar',b:'Third-generation Madhubani painter who learned the craft from her grandmother. Works with natural pigments on handmade paper.',e:'sita@example.com',w:[['Matsya Mangal','The fish is a symbol of fertility and good fortune at Mithila weddings.',['#fff1c9','#7a1f14','#e9a23b']],['Surya Rath','The sun god’s chariot, drawn in the traditional double-line style.',['#fde7d5','#2f4a2a','#d9604a']],['Kohbar Ghar','A wedding chamber motif painted on the walls of newly-weds’ homes.',['#fff1c9','#1f3a5f','#e0b43a']]]},
+{id:'ravi-vayeda',n:'Ravi Vayeda',k:'warli',f:'Warli',pl:'Palghar, Maharashtra',b:'Warli artist who paints village life with rice-paste on mud-brown walls and canvas, using only circles, triangles and lines.',e:'ravi@example.com',w:[['Tarpa Dance','Villagers circle the tarpa musician during harvest celebrations.',['#8a4b2a','#fff6e4','#e0b43a']],['Chowk Ritual','The sacred square drawn for weddings, with the Mother Goddess at the centre.',['#7a3d20','#fff6e4','#e9a23b']],['Harvest Moon','A circle of dancers marks the end of the farming season.',['#6b3a22','#fff6e4','#d9604a']]]},
+{id:'lakshmi-nair',n:'Lakshmi Nair',k:'mural',f:'Kerala Mural',pl:'Thrissur, Kerala',b:'Mural painter trained in the temple-art tradition of Kerala, using the classic five-colour palette on cloth and wood.',e:'lakshmi@example.com',w:[['Mohiniyattam Muse','A dancer’s face in the bold, rounded style of temple murals.',['#2d4a3a','#2a1608','#c23b22']],['Gajendra Moksham','A story from the Bhagavata Purana, painted in the Kerala mural style.',['#3a1f12','#f6e9cf','#2f6b3a']],['Krishna Leela','Lord Krishna shown with the expressive eyes typical of Kerala murals.',['#f2d9a0','#2a1608','#3b5ba5']]]},
+{id:'bijay-mohanty',n:'Bijay Mohanty',k:'patta',f:'Pattachitra',pl:'Raghurajpur, Odisha',b:'Raghurajpur heritage-village artist making Pattachitra scrolls with stone and shell colours on treated cloth.',e:'bijay@example.com',w:[['Jagannath Chakra','The wheel motif of Puri’s Jagannath temple tradition.',['#f9e3b4','#8b2c1d','#2f4a8a']],['Lotus Medallion','Concentric petals inspired by temple ceilings in Odisha.',['#fff1c9','#2f6b3a','#e9a23b']],['Dashavatara Roundel','One of the ten avatars of Vishnu set in a decorated circle.',['#f2d9a0','#3a1f12','#c23b22']]]},
+{id:'anita-gond',n:'Anita Gond',k:'gond',f:'Gond',pl:'Dindori, Madhya Pradesh',b:'Gond artist who fills animals and trees with fine dot and line patterns, so that each one feels alive.',e:'anita@example.com',w:[['Mahua Bird','A bird that lives in the sacred mahua tree of Gond folklore.',['#1f2a44','#fff6e4','#e9a23b']],['Dotted Deer','Dots and dashes fill the deer’s body, a signature of Gond art.',['#2a3d2a','#fde7d5','#d9604a']],['Tree of Life','Roots and branches connect people, animals and spirits.',['#3a1f12','#f6e9cf','#3b9a8a']]]}];
+const L={en:(a,w,u)=>`🎨 ${w.t} | ${a.n}, ${a.pl}\n\n${w.s}\n\nA handmade ${a.f} artwork. To buy or commission, contact the artist: ${u}\n#IndianArt #${a.f.replace(/\s/g,'')} #HandmadeInIndia`,
+ml:(a,w,u)=>`🎨 ${w.t} | ${a.n}, ${a.pl}\n\n${w.s}\n\nകൈകൊണ്ട് വരച്ച ${a.f} കലാസൃഷ്ടി. വാങ്ങാനോ ഓർഡർ ചെയ്യാനോ കലാകാരനെ ബന്ധപ്പെടുക: ${u}\nപാരമ്പര്യ കലയെ പിന്തുണയ്ക്കൂ 🙏 #ഭാരതീയകല #കൈത്തറി`};
+const $=s=>document.querySelector(s),app=$('#app'),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const svg=(a,w,i)=>`<svg viewBox="0 0 200 200" role="img" aria-label="${esc(w.t)}">${M[a.k](w.p,i%3-1)}</svg>`;
+let lang='en',sel={};
+A.forEach(a=>a.w=a.w.map(x=>x.length?{t:x[0],s:x[1],p:x[2]}:x));
+const base=()=>location.href.split('#')[0],link=a=>base()+'#'+a.id;
+function home(){app.innerHTML=`<div class="hero"><span class="tag">PS-02 · Artist Visibility</span><h1>From Craft to Click</h1><p>A simple online portfolio for traditional artists: their work, their story, and an easy way to reach them. Share it with one link or QR code.</p></div>
+<h2>Featured artists</h2><div class="grid">${A.map(a=>`<div class="c"><a href="#${a.id}">${svg(a,a.w[0],0)}<div class="p"><b>${esc(a.n)}</b><div class="m">${esc(a.f)} · ${esc(a.pl)}</div></div></a></div>`).join('')}</div>
+<h2>Gallery</h2><div class="grid">${A.flatMap(a=>a.w.map((w,i)=>`<div class="c"><a href="#${a.id}">${svg(a,w,i)}<div class="p"><b>${esc(w.t)}</b><div class="m">${esc(a.n)}</div></div></a></div>`)).join('')}</div>`}
+function artist(a){const wi=sel[a.id]||0,w=a.w[wi];
+app.innerHTML=`<p><a href="#">← All artists</a></p><span class="tag">${esc(a.f)}</span><h1>${esc(a.n)}</h1><div class="m">📍 ${esc(a.pl)}</div><p>${esc(a.b)}</p>
+<h2>Artworks</h2><div class="grid">${a.w.map((x,i)=>`<div class="c art" data-i="${i}" style="${i==wi?'outline:3px solid var(--red)':''}">${svg(a,x,i)}<div class="p"><b>${esc(x.t)}</b></div></div>`).join('')}</div>
+<div class="box"><h2>Shareable artwork card</h2><div class="ac" id="card">${svg(a,w,wi)}<h3>${esc(w.t)}</h3><div class="m">by ${esc(a.n)} · ${esc(a.pl)}</div><p style="font-size:14px">${esc(w.s)}</p><small>KALADWAR · ${esc(a.f).toUpperCase()}</small></div>
+<p class="m" style="text-align:center">Take a screenshot of the card to post it, or copy the caption below.</p>
+<label>Caption language</label><div class="row seg"><button class="btn o ${lang=='en'?'on':''}" data-l="en">English</button><button class="btn o ${lang=='ml'?'on':''}" data-l="ml">മലയാളം</button></div>
+<textarea id="cap">${esc(L[lang](a,w,link(a)))}</textarea><div class="row"><button class="btn" id="copy">Copy caption</button><button class="btn o" id="share">Share link</button></div><div id="msg"></div></div>
+<div class="box" style="text-align:center"><h2>Share this portfolio</h2><div id="qr"></div><p class="m">Scan to open ${esc(a.n)}’s portfolio</p></div>
+<div class="box"><h2>Contact or commission</h2><label>Your name</label><input id="en" autocomplete="name"><label>Your email</label><input id="ee" type="email" autocomplete="email"><label>I want to</label><select id="et"><option>Buy an artwork</option><option>Commission a new piece</option><option>Book a workshop</option></select><label>Message</label><textarea id="em"></textarea><div class="row"><button class="btn" id="send">Send enquiry</button></div><div id="emsg"></div></div>`;
+if(window.QRCode)new QRCode($('#qr'),{text:link(a),width:160,height:160});
+document.querySelectorAll('.art').forEach(e=>e.onclick=()=>{sel[a.id]=+e.dataset.i;artist(a)});
+document.querySelectorAll('[data-l]').forEach(e=>e.onclick=()=>{lang=e.dataset.l;artist(a)});
+$('#copy').onclick=()=>{const t=$('#cap');t.select();let ok=false;try{navigator.clipboard.writeText(t.value);ok=true}catch(e){try{ok=document.execCommand('copy')}catch(e2){}}$('#msg').innerHTML=ok?'<div class="ok">Caption copied.</div>':'<div class="m">Select the text above and copy it.</div>'};
+$('#share').onclick=async()=>{try{await navigator.share({title:a.n,text:w.t,url:link(a)})}catch(e){$('#msg').innerHTML=`<div class="m">Link: ${esc(link(a))}</div>`}};
+$('#send').onclick=()=>{const n=$('#en').value.trim(),m=$('#em').value.trim(),e=$('#ee').value.trim();if(!n||!m||!/.+@.+/.test(e)){$('#emsg').innerHTML='<div class="m" style="color:var(--red)">Please add your name, a valid email and a message.</div>';return}
+const sub=encodeURIComponent($('#et').value+' – '+w.t),body=encodeURIComponent(`Hello ${a.n},\n\n${m}\n\n– ${n} (${e})`);
+$('#emsg').innerHTML=`<div class="ok">Enquiry ready. Tap below to send it to ${esc(a.n)}.</div><a class="btn" href="mailto:${a.e}?subject=${sub}&body=${body}">Open email to send</a>`}}
+function create(){app.innerHTML=`<p><a href="#">← Back</a></p><h1>Create your portfolio</h1><p class="m">Fill in a few details. Your page is built for you.</p><div class="box"><label>Your name</label><input id="cn"><label>Art form</label><select id="ck">${Object.keys(M).map(k=>`<option value="${k}">${k[0].toUpperCase()+k.slice(1)}</option>`).join('')}</select><label>Place</label><input id="cp" placeholder="Village, State"><label>About you</label><textarea id="cb"></textarea><label>First artwork title</label><input id="ct"><label>Story behind it</label><textarea id="cs"></textarea><div class="row"><button class="btn" id="mk">Build my portfolio</button></div><div id="cm"></div></div>`;
+$('#mk').onclick=()=>{const v=i=>$(i).value.trim();if(!v('#cn')||!v('#ct')){$('#cm').innerHTML='<div class="m" style="color:var(--red)">Please add your name and an artwork title.</div>';return}
+const k=$('#ck').value,id=v('#cn').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'artist';
+A.push({id,n:v('#cn'),k,f:$('#ck').selectedOptions[0].text,pl:v('#cp')||'India',b:v('#cb')||'Traditional artist.',e:'artist@example.com',w:[{t:v('#ct'),s:v('#cs')||'A handmade traditional artwork.',p:['#fff1c9','#7a1f14','#e9a23b']}]});location.hash=id}}
+function route(){const h=location.hash.slice(1),a=A.find(x=>x.id==h);window.scrollTo(0,0);h=='create'?create():a?artist(a):home()}
+addEventListener('hashchange',route);route();
+</script></body></html>
