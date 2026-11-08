@@ -32,13 +32,14 @@ Then visit the URL printed in the terminal.
 
 ## Deploy on GitHub Pages
 
-The site is published from the `main` branch root.
+The site is a static `index.html` on the `main` branch. GitHub Actions cannot turn Pages on by itself.
 
-1. Push this repository to GitHub
-2. In the repo: **Settings → Pages**
-3. Set source to **GitHub Actions** (or **Deploy from a branch** → `main` / `/ (root)`)
+1. Open [Settings → Pages](https://github.com/richurishan-byte/KalaDwar/settings/pages)
+2. Under **Build and deployment → Source**, choose **Deploy from a branch**
+3. Branch: `main` · Folder: `/ (root)`
+4. Click **Save**
 
-After Pages is enabled, the site is available at:
+After about a minute, the site is at:
 
 `https://richurishan-byte.github.io/KalaDwar/`
 
